@@ -5,3 +5,4 @@ dist-ssr
 node_modules
 /mockup
 data.json
+.vscode
