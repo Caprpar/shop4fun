@@ -8,13 +8,14 @@
     <span id="items">
       <span id="cart" class="icon"><div id="dot"></div><img src="../../assets/cart.svg" alt=""></span>
       <span id="burger" class="icon"><img src="../../assets/burger.svg" alt=""></span>
-
     </span>
   </nav>
 </template>
 
 <style socped>
   nav {
+    /* top: 10em;
+    position: sticky; */
     display: flex;
     justify-content: space-between;
     align-items: center;
