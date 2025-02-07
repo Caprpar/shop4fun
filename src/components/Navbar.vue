@@ -3,6 +3,7 @@
 </script>
 
 <template>
+
   <nav>
     <span id="logo">S4F</span>
     <span id="items">
@@ -10,12 +11,15 @@
       <span id="burger" class="icon"><img src="../../assets/burger.svg" alt=""></span>
     </span>
   </nav>
+  <div id="filler"></div>
 </template>
 
 <style socped>
+  #filler{
+    height: 5em;
+  }
   nav {
-    /* top: 10em;
-    position: sticky; */
+    position: fixed;
     display: flex;
     justify-content: space-between;
     align-items: center;

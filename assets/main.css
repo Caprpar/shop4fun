@@ -2,7 +2,8 @@
   --dark: #0d160b;
   --light: #f4faff;
   --grey: #dfe4e9;
-  --blue: #5887ff;
+  --fade-blue: #5887ff;
+  --blue: hsl(223, 100%, 62%);
   --red: #ef476f;
   --green: #17b890;
   --yellow: #eabb00;
@@ -15,10 +16,12 @@ body {
 }
 
 body {
+  /* position: relative; */
   display: flex;
   background-color: var(--light);
+  justify-content: center;
   height: 100dvh;
-  width: 100%;
+  width: 100vw;
   box-sizing: border-box;
   overflow-x: hidden;
 }

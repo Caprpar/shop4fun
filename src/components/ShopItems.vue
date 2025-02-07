@@ -28,23 +28,29 @@ import axios from "axios"
 </script>
 
 <template>
-  <div id="cards">
-    <div id="card" v-for="[index, product] in Object.entries(this.products.products)">
-    <div id="image-container">
-      <img  :src="product.images[0]" alt="">
-    </div>
-    <div id="info">
-      <div id="title">
-        {{ product.title }}
+  <ul id="cards">
+    <a :key="product.id" id="card" v-for="[index, product] in Object.entries(this.products.products)" href="">
+      <li>
+      <div id="image-container">
+        <img  :src="product.images[0]" alt="">
       </div>
-      <div id="rating">
-        * * * * * ({{ product.rating }})
+      <div id="info">
+        <div id="title">
+          {{ product.title }}
+        </div>
+        <div id="rating">
+          * * * * * ({{ product.rating }})
+        </div>
+        <div id="price">
+          {{ product.price }} $
+          <input class="btn" type="button" value="Add">
+        </div>
       </div>
-      <div id="price">
-        {{ product.price }} $
-      </div>
-    </div>
-  </div>
+    </li>
+    </a>
+  </ul>
+  <div >
+
   </div>
 
 </template>
@@ -57,50 +63,102 @@ import axios from "axios"
 
   img {
     width: auto;
-    height: 9em;
-    margin: 1em;
+    height: auto;
+    max-height: 8em;
+    aspect-ratio: 1/1;
+    object-fit: contain;
+    /* margin: 1em; */
+  }
+
+  ul {
+    padding: 0 1em;
+  }
+
+  li {
+    box-sizing: border-box;
+    width: 100%;
+  }
+  a {
+    text-decoration: none;
+    color: var(--dark);
+  }
+
+  #image-container {
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1em;
+    /* border: solid red; */
   }
 
   #cards {
+    overflow-y: auto;
+    scrollbar-gutter: stable;
+    /* padding: 01em; */
+    box-sizing: border-box;
+    list-style: none;
     display: flex;
-    width: 100vw;
+    flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-around;
+    /* padding: 0 1em; */
+    /* width: 50em; */
+    display: flex;
+    width: 100dvw;
+    gap: .1em;
   }
 
   #card {
+    /* border: solid red; */
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 1em 0 1em 0;
-    height: 16em;
-    /* padding: 0 0 1em 0; */
+    align-items: end;
+    margin-top: 1em;
+    min-height: 15em;
     width: 10em;
     background-color: var(--grey);
     border-radius: 1em 1em 0 0;
+    margin-bottom: .5em;
   }
 
   #info {
-    padding: 0 0 0 .5rem;
+    width: 100%;
+    padding: 0;
     font-family: Montserrat;
     background-color: var(--light);
-    width: 100%;
-    height: 100%;
+    height: max(50em,100%);
   }
 
   #title {
-    padding: .5em 0 0 0 ;
+    padding: .5em 0 0 .5em ;
     font-weight: bold;
     font-size: .8rem;
   }
   #rating {
-    padding: .2em 0 0 0 ;
+    padding: .2em 0 0 .5em ;
     font-size: .6rem;
   }
   #price {
-    padding: .5em 0 0 0 ;
+    display: flex;
+    justify-content: space-between;
+    padding: .5em 0 0 .5em ;
     font-weight: bold;
     font-size: .8rem;
+  }
 
+  .btn:hover{
+    background-color: var(--fade-blue);
+  }
+  .btn{
+    background-color: var(--blue);
+    color: var(--light);
+    border: none;
+    border-radius: 4px;
+    font-family: montserrat;
+    font-size: 1em;
+    padding: 4px 8px;
+    margin-right: .5em;
+    cursor: pointer;
   }
 </style>
