@@ -29,25 +29,34 @@ import axios from "axios"
 
 <template>
   <ul id="cards">
-    <a :key="product.id" id="card" v-for="[index, product] in Object.entries(this.products.products)" href="">
+    <div>
+
+    </div>
+    <div :key="product.id" id="card" v-for="[index, product] in Object.entries(this.products.products)" href="">
       <li>
-      <div id="image-container">
-        <img  :src="product.images[0]" alt="">
-      </div>
+        <div id="image-container">
+          <a href="">
+            <img  :src="product.images[0]" :alt="product.title">
+          </a>
+        </div>
       <div id="info">
         <div id="title">
-          {{ product.title }}
+          <a href="">
+            {{ product.title }}
+          </a>
         </div>
         <div id="rating">
           * * * * * ({{ product.rating }})
         </div>
         <div id="price">
           {{ product.price }} $
-          <input class="btn" type="button" value="Add">
+          <a href="">
+            <input class="btn" type="button" value="Add">
+          </a>
         </div>
       </div>
     </li>
-    </a>
+  </div>
   </ul>
   <div >
 
@@ -76,6 +85,7 @@ import axios from "axios"
 
   li {
     box-sizing: border-box;
+    width: 100%;
     width: 100%;
   }
   a {
@@ -114,11 +124,12 @@ import axios from "axios"
     /* border: solid red; */
     display: flex;
     align-items: end;
+
     margin-top: 1em;
     min-height: 15em;
     width: 10em;
     background-color: var(--grey);
-    border-radius: 1em 1em 0 0;
+    border-radius: .5em .5em 0 0;
     margin-bottom: .5em;
   }
 
@@ -127,7 +138,6 @@ import axios from "axios"
     padding: 0;
     font-family: Montserrat;
     background-color: var(--light);
-    height: max(50em,100%);
   }
 
   #title {
@@ -142,6 +152,7 @@ import axios from "axios"
   #price {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     padding: .5em 0 0 .5em ;
     font-weight: bold;
     font-size: .8rem;
@@ -154,11 +165,20 @@ import axios from "axios"
     background-color: var(--blue);
     color: var(--light);
     border: none;
-    border-radius: 4px;
+    border-radius: 8px;
     font-family: montserrat;
     font-size: 1em;
-    padding: 4px 8px;
+    padding: 8px 12px;
     margin-right: .5em;
     cursor: pointer;
   }
+
+/* Större skärmar (datorer) */
+@media only screen and (min-width: 768px) {
+  #card {
+    width: 15em;
+    height: 20em;
+  }
+}
+
 </style>
