@@ -50,9 +50,7 @@ import axios from "axios"
         </div>
         <div id="price">
           {{ product.price }} $
-          <a href="">
-            <input class="btn" type="button" value="Add">
-          </a>
+          <input class="btn" type="button" value="Add">
         </div>
       </div>
     </li>
@@ -86,14 +84,15 @@ import axios from "axios"
   li {
     box-sizing: border-box;
     width: 100%;
-    width: 100%;
   }
+
   a {
     text-decoration: none;
     color: var(--dark);
   }
 
   #image-container {
+    grid-area: image;
     box-sizing: border-box;
     width: 100%;
     height: 100%;
@@ -106,15 +105,12 @@ import axios from "axios"
   #cards {
     overflow-y: auto;
     scrollbar-gutter: stable;
-    /* padding: 01em; */
     box-sizing: border-box;
     list-style: none;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-around;
-    /* padding: 0 1em; */
-    /* width: 50em; */
     display: flex;
     width: 100dvw;
     gap: .1em;
@@ -122,11 +118,16 @@ import axios from "axios"
 
   #card {
     /* border: solid red; */
-    display: flex;
+    display: grid;
+    grid-template-areas:
+      "image"
+      "info";
+    grid-template-rows: 100%;
+    /* align-items: end; */
     align-items: end;
 
     margin-top: 1em;
-    min-height: 15em;
+    /* min-height: 15em; */
     width: 10em;
     background-color: var(--grey);
     border-radius: .5em .5em 0 0;
@@ -134,6 +135,11 @@ import axios from "axios"
   }
 
   #info {
+    /* display: flex;
+    flex-direction: column;
+    justify-content: end; */
+    height: fit-content;
+    grid-area: info;
     width: 100%;
     padding: 0;
     font-family: Montserrat;
@@ -156,6 +162,7 @@ import axios from "axios"
     padding: .5em 0 0 .5em ;
     font-weight: bold;
     font-size: .8rem;
+    padding-bottom: .5em;
   }
 
   .btn:hover{
