@@ -29,9 +29,6 @@ import axios from "axios"
 
 <template>
   <ul id="cards">
-    <div>
-
-    </div>
     <div :key="product.id" id="card" v-for="[index, product] in Object.entries(this.products.products)" href="">
       <li>
         <div id="image-container">
@@ -70,15 +67,15 @@ import axios from "axios"
 
   img {
     width: auto;
-    height: auto;
-    max-height: 8em;
+    height:8em;
+    max-height: 100%;
     aspect-ratio: 1/1;
     object-fit: contain;
     /* margin: 1em; */
   }
 
   ul {
-    padding: 0 1em;
+    padding: 0 1.5em;
   }
 
   li {
@@ -94,11 +91,13 @@ import axios from "axios"
   #image-container {
     grid-area: image;
     box-sizing: border-box;
+    object-fit: contain;
     width: 100%;
     height: 100%;
     display: flex;
     justify-content: center;
-    margin-bottom: 1em;
+    align-items: center;
+    /* margin-bottom: 1em; */
     /* border: solid red; */
   }
 
@@ -110,10 +109,11 @@ import axios from "axios"
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: space-between;
+    align-items: center;
     display: flex;
     width: 100dvw;
-    gap: .1em;
+    /* gap: .1em; */
   }
 
   #card {
@@ -129,6 +129,8 @@ import axios from "axios"
     margin-top: 1em;
     /* min-height: 15em; */
     width: 10em;
+    height: 16em;
+    max-height: 16em;
     background-color: var(--grey);
     border-radius: .5em .5em 0 0;
     margin-bottom: .5em;
@@ -149,7 +151,7 @@ import axios from "axios"
   #title {
     padding: .5em 0 0 .5em ;
     font-weight: bold;
-    font-size: .8rem;
+    font-size: .9rem;
   }
   #rating {
     padding: .2em 0 0 .5em ;
@@ -174,7 +176,7 @@ import axios from "axios"
     border: none;
     border-radius: 8px;
     font-family: montserrat;
-    font-size: 1em;
+    font-size: 1.1em;
     padding: 8px 12px;
     margin-right: .5em;
     cursor: pointer;
@@ -185,6 +187,23 @@ import axios from "axios"
   #card {
     width: 15em;
     height: 20em;
+    max-height: 20em;
+  }
+  img {
+    height: 11em;
+  }
+  .btn{
+    font-size: 1.3em;
+    padding: 8px 16px;
+  }
+  #title {
+    font-size: 1rem;
+  }
+  #rating {
+    font-size: .7rem;
+  }
+  #price {
+    font-size: .9rem;
   }
 }
 
