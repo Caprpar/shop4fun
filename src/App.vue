@@ -8,5 +8,6 @@
 
 <template>
   <Navbar></Navbar>
-  <ShopItems></ShopItems>
+  <RouterView />
+  <!-- <ShopItems></ShopItems> -->
 </template>

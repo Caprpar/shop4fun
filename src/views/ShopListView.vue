@@ -1,3 +1,7 @@
+<script setup>
+import ShopItems from "../components/ShopItems.vue";
+</script>
+
 <template>
-  <h1>Hej från shoplist</h1>
+  <ShopItems />
 </template>

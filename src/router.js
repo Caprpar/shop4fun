@@ -17,7 +17,7 @@ export default createRouter({
     },
     {
       component: ShopListView,
-      path: "/shoplist",
+      path: "/list",
     },
   ],
 });
