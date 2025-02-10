@@ -14,7 +14,7 @@
   <div id="filler"></div>
 </template>
 
-<style socped>
+<style scoped>
   #filler{
     height: 5em;
   }

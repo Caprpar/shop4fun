@@ -18,8 +18,9 @@ body {
 body {
   /* position: relative; */
   display: flex;
+  flex-direction: column;
   background-color: var(--light);
-  justify-content: center;
+  /* justify-content: center; */
   height: 100dvh;
   width: 100vw;
   box-sizing: border-box;
