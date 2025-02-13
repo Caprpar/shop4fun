@@ -25,11 +25,8 @@
   <main>
     <p>{{ product.title }}</p>
     <div id="images">
-      <div id="mini" :style="{justifyContent: hasImgCountBelowThree ? 'start' : 'space-between' }">
-        <div v-for="image in product.images.slice(0,3)"> <!-- get three images from index 1 -->
-          <img v-if="image" :src="image" :alt="product.title">
-          <div v-else id="placeholder"></div>
-        </div>
+      <div v-for="image in product.images.slice(0,3)" class="mini" :style="{justifyContent: hasImgCountBelowThree ? 'start' : 'space-between' }">
+        <img  :src="image" :alt="product.title">
       </div>
       <div id="big">
         <img :src="product.images[0]" alt="">
@@ -40,12 +37,11 @@
 </template>
 
 <style scoped>
+
   main {
-    width: 100%;
-    padding: 0 1em;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+   display: flex;
+   align-items: center;
+   flex-direction: column;
   }
   img {
     width: 10em;
@@ -53,49 +49,34 @@
     background-color: var(--grey);
   }
   #images {
-    /* border: solid; */
-    display: grid;
-    grid-template-areas:
-    "mini"
-    "big";
-    grid-template-rows: .3fr 1fr;
-    /* grid-template-columns: .3fr 1fr; */
-    gap: .5em;
-    /* max-width: 22em; */
+  display: grid;
+  gap: 1em;
+  grid-template-areas:
+  "mini mini mini"
+  "big big big";
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 3fr;
+  width: fit-content;
+  width: 100%;
+  height: auto;
+  max-width: 30em;
+  aspect-ratio: 3/4;
+
   }
-  #mini > div{
-    height: 100%;
+  img {
     width: 100%;
+    height: 100%;
+    object-fit: contain;
+    contain: size;
+
   }
 
-  #mini > div > img{
-    width: auto;
-    object-fit: contain;
-    height: 100%;
-    padding: .5em;
-    aspect-ratio: 1/1;
-    contain: size;
-    /* margin-right: 1em; */
-  }
   #mini {
-    display: flex;
-    justify-content: space-around;
-    flex-basis: auto;
-    gap: .5em;
-    flex-direction: row;
+    grid-area: mini;
+
   }
-  #placeholder {
-    height: 6em;
-    width: 6em;
-    background-color: var(--grey);
-  }
+
   #big {
-    background-color: var(--grey);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: auto;
-    aspect-ratio: 1/1;
+    grid-area: big;
   }
 </style>

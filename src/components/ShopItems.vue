@@ -107,7 +107,8 @@ import axios from "axios"
     box-sizing: border-box;
     list-style: none;
     display: flex;
-    flex-direction: row;
+    gap: 1em;
+    /* flex-direction: row; */
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
@@ -151,11 +152,11 @@ import axios from "axios"
   #title {
     padding: .5em 0 0 .5em ;
     font-weight: bold;
-    font-size: .9rem;
+    font-size: 1rem;
   }
   #rating {
     padding: .2em 0 0 .5em ;
-    font-size: .6rem;
+    font-size: .7rem;
   }
   #price {
     display: flex;
@@ -163,7 +164,7 @@ import axios from "axios"
     align-items: center;
     padding: .5em 0 0 .5em ;
     font-weight: bold;
-    font-size: .8rem;
+    font-size: .9rem;
     padding-bottom: .5em;
   }
 
@@ -182,9 +183,9 @@ import axios from "axios"
     cursor: pointer;
   }
 
-/* Större skärmar (datorer) */
-@media only screen and (min-width: 768px) {
-  #card {
+  /* Större skärmar (datorer) */
+  @media only screen and (min-width: 768px) {
+    #card {
     width: 15em;
     height: 20em;
     max-height: 20em;
@@ -197,13 +198,15 @@ import axios from "axios"
     padding: 8px 16px;
   }
   #title {
-    font-size: 1rem;
+    font-size: .9rem;
   }
   #rating {
-    font-size: .7rem;
+    font-size: .6rem;
+
   }
   #price {
-    font-size: .9rem;
+    font-size: .8rem;
+
   }
 }
 
