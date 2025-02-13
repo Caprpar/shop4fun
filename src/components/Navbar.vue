@@ -5,7 +5,7 @@
 <template>
 
   <nav>
-    <span id="logo">S4F</span>
+    <router-link to="/" class="no-deco"><span id="logo">S4F</span></router-link>
     <span id="items">
       <span id="cart" class="icon"><div id="dot"></div><img src="../../assets/cart.svg" alt=""></span>
       <span id="burger" class="icon"><img src="../../assets/burger.svg" alt=""></span>
@@ -55,6 +55,9 @@
   }
   #burger {
     transform: scale(.5);
+  }
+  .no-deco {
+    text-decoration: none;
   }
 
   .icon {
