@@ -5,6 +5,8 @@
       return {
         product: null,
         hasImgCountBelowThree: null,
+        discountedPrice: null,
+        stars:null,
       }
     },
     methods: {
@@ -12,69 +14,115 @@
         const response = await fetch(`https://dummyjson.com/products/${id}`)
         const data = await response.json()
         return await data
+      },
+      get_star_rating(rating){
+        const full = "../../assets/full.svg"
+        const half = "../../assets/half.svg"
+        const empty = "../../assets/empty.svg"
+        const starList = []
+
+        for (let index = 0; index < 5; index++) {
+          if (rating > 1){
+            starList.push(full)
+          } else if (rating > .5 && rating > 0){
+            starList.push(half)
+          } else {
+            starList.push(empty)
+          }
+          rating--
+        }
+
+        return starList
       }
     },
     async created() {
       this.product = await this.get_product_by_id(this.$route.params.productId)
       this.hasImgCountBelowThree = this.product.images.length < 3 ? true : false
+      this.discountedPrice = (this.product.price - (this.product.price * this.product.discountPercentage / 100)).toFixed(2)
+      this.stars = this.get_star_rating(this.product.rating)
     }
   }
 </script>
 
 <template>
   <main>
-    <div id="images">
-      <div v-for="image in product.images.slice(0,3)" class="mini" :style="{justifyContent: hasImgCountBelowThree ? 'start' : 'space-between' }">
-        <img  :src="image" :alt="product.title">
-      </div>
-      <div id="big">
-        <img :src="product.images[0]" alt="">
-      </div>
-    </div>
-    <section>
-      <div>
-        {{ product.title }}
-      </div>
-      <div>
-        From {{product.price - (product.price * product.discountPercentage / 100) }} ink vat
-      </div>
-      <div>
-        usally {{ product.price }} -{{ product.discountPercentage }}%
-      </div>
-      <div>
-        {{ product.rating }}
+    <div id="container">
+      <div id="images">
+        <div v-for="image in product.images.slice(0,3)" class="mini" :style="{justifyContent: hasImgCountBelowThree ? 'start' : 'space-between' }">
+          <img  :src="image" :alt="product.title">
+        </div>
+        <div id="big">
+          <img :src="product.images[0]" alt="">
+        </div>
       </div>
 
-    </section>
+      <hgroup>
+        <h1 id="title">
+          {{ product.title }}
+        </h1>
+        <p id="discount">
+          from {{this.discountedPrice }}$ <span id="vat"> (ink. vat) </span>
+        </p>
+        <p id="price">
+          usally <strong id="ordinary-price">{{ product.price }}$</strong> - <span id="discountPercentage">{{ product.discountPercentage }}%</span>
+        </p>
+        <div id="star-container">
+          <span id="stars">
+            <img v-for="star in stars" :src="star" alt="">
+          </span>
+          <span id="rating">({{ product.rating }})</span>
+        </div>
+
+      </hgroup>
+
+    </div>
   </main>
 
 </template>
 
 <style scoped>
+  * {
+    font-family: montserrat;
+  }
 
   main {
    display: flex;
    align-items: center;
+   justify-content: center;
    flex-direction: column;
   }
+
   img {
     width: 10em;
     height: auto;
     background-color: var(--grey);
   }
+
+  p{
+    line-height: .1em;
+  }
+
+  #container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 1em 0;
+    max-width: 30em;
+    width: 100%;
+  }
   #images {
-  display: grid;
-  gap: 1em;
-  grid-template-areas:
-  "mini mini mini"
-  "big big big";
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 1fr 3fr;
-  width: fit-content;
-  width: 100%;
-  height: auto;
-  max-width: 30em;
-  aspect-ratio: 3/4;
+    display: grid;
+    gap: 1em;
+    grid-template-areas:
+    "mini mini mini"
+    "big big big";
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 3fr;
+    width: fit-content;
+    width: 100%;
+    height: auto;
+    max-width: 30em;
+    aspect-ratio: 3/4;
 
   }
   img {
@@ -91,7 +139,51 @@
   #big {
     grid-area: big;
   }
-  section {
+  hgroup {
+    box-sizing: border-box;
     width: 100%;
   }
+
+
+  #title{
+    color: var(--dark);
+  }
+  #discount{
+    color: var(--red);
+    font-weight: bold;
+    font-size: 1.6rem;
+  }
+  #vat{
+    color: var(--strong-grey);
+    font-size: .9rem;
+  }
+  #price{
+
+  }
+  #ordinary-price{
+    color:var(--dark);
+  }
+  #discountPercentage{
+    color: var(--red);
+    font-weight: bold;
+
+  }
+  #star-container {
+    display: flex;
+    align-items: center;
+  }
+  #stars > img {
+    /* border: solid red; */
+    background-color: var(--light);
+    width: 1.5em;
+    height: 1.5em;
+
+  }
+  #rating{
+    margin-left: .5em;
+    font-size: .9em;
+    font-weight: bold;
+    color: var(--strong-grey);
+  }
+
 </style>
