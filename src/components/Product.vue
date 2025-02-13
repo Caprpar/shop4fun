@@ -108,7 +108,7 @@
     justify-content: center;
     padding: 1em 0;
     max-width: 30em;
-    width: 100%;
+    width: 95%;
   }
   #images {
     display: grid;
