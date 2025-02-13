@@ -23,7 +23,6 @@
 
 <template>
   <main>
-    <p>{{ product.title }}</p>
     <div id="images">
       <div v-for="image in product.images.slice(0,3)" class="mini" :style="{justifyContent: hasImgCountBelowThree ? 'start' : 'space-between' }">
         <img  :src="image" :alt="product.title">
@@ -32,6 +31,21 @@
         <img :src="product.images[0]" alt="">
       </div>
     </div>
+    <section>
+      <div>
+        {{ product.title }}
+      </div>
+      <div>
+        From {{product.price - (product.price * product.discountPercentage / 100) }} ink vat
+      </div>
+      <div>
+        usally {{ product.price }} -{{ product.discountPercentage }}%
+      </div>
+      <div>
+        {{ product.rating }}
+      </div>
+
+    </section>
   </main>
 
 </template>
@@ -68,15 +82,16 @@
     height: 100%;
     object-fit: contain;
     contain: size;
-
   }
 
   #mini {
     grid-area: mini;
-
   }
 
   #big {
     grid-area: big;
+  }
+  section {
+    width: 100%;
   }
 </style>
