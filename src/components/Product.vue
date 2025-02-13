@@ -6,14 +6,14 @@
         product: null,
         hasImgCountBelowThree: null,
         discountedPrice: null,
-        stars:null,
+        stars: null,
       }
     },
     methods: {
       async get_product_by_id(id){
         const response = await fetch(`https://dummyjson.com/products/${id}`)
         const data = await response.json()
-        return await data
+        this.product = await data
       },
       get_star_rating(rating){
         const full = "../../assets/full.svg"
@@ -36,7 +36,11 @@
       }
     },
     async created() {
-      this.product = await this.get_product_by_id(this.$route.params.productId)
+      console.log(this.$route.params.productId)
+      this.$watch(() => this.$route.params.productId,
+      this.get_product_by_id,
+      {immediate : true})
+      // this.product = await this.get_product_by_id(this.$route.params.productId)
       this.hasImgCountBelowThree = this.product.images.length < 3 ? true : false
       this.discountedPrice = (this.product.price - (this.product.price * this.product.discountPercentage / 100)).toFixed(2)
       this.stars = this.get_star_rating(this.product.rating)
