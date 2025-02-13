@@ -1,5 +1,6 @@
 :root {
   --dark: #0d160b;
+  --light-dark: hwb(109 4% 74%);
   --light: #f4faff;
   --strong-grey: hwb(210 87% 54%);
   --grey: #dfe4e9;

@@ -64,7 +64,7 @@
           from {{this.discountedPrice }}$ <span id="vat"> (ink. vat) </span>
         </p>
         <p id="price">
-          usally <strong id="ordinary-price">{{ product.price }}$</strong> - <span id="discountPercentage">{{ product.discountPercentage }}%</span>
+          usally: <strong id="ordinary-price">{{ product.price }}$</strong> <span id="discountPercentage">-{{ product.discountPercentage }}%</span>
         </p>
         <div id="star-container">
           <span id="stars">
@@ -72,9 +72,9 @@
           </span>
           <span id="rating">({{ product.rating }})</span>
         </div>
-
       </hgroup>
 
+      <input type="button" name="" id="add-button" value="Add to cart">
     </div>
   </main>
 
@@ -161,12 +161,13 @@
 
   }
   #ordinary-price{
-    color:var(--dark);
+    color:var(--light-dark);
+    font-size: 1.1em;
+    text-decoration: line-through;
   }
   #discountPercentage{
     color: var(--red);
     font-weight: bold;
-
   }
   #star-container {
     display: flex;
@@ -186,4 +187,16 @@
     color: var(--strong-grey);
   }
 
+  #add-button:hover {
+    background-color: var(--fade-blue);
+  }
+  #add-button {
+    background-color: var(--blue);
+    padding: 16px 0;
+    margin: 1em 0;
+    font-size: 1.2em;
+    font-weight: bold;
+    color: var(--light);
+    border: none;
+  }
 </style>
