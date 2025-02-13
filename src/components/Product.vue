@@ -5,8 +5,6 @@
       return {
         product: null,
         hasImgCountBelowThree: null,
-        discountedPrice: null,
-        stars: null,
       }
     },
     methods: {
@@ -40,16 +38,24 @@
       this.$watch(() => this.$route.params.productId,
       this.get_product_by_id,
       {immediate : true})
-      // this.product = await this.get_product_by_id(this.$route.params.productId)
+      // await this.get_product_by_id(this.$route.params.productId)
       this.hasImgCountBelowThree = this.product.images.length < 3 ? true : false
-      this.discountedPrice = (this.product.price - (this.product.price * this.product.discountPercentage / 100)).toFixed(2)
-      this.stars = this.get_star_rating(this.product.rating)
+    },
+    computed: {
+      discountedPrice(){
+        const price = (this.product.price - (this.product.price * this.product.discountPercentage / 100)).toFixed(2)
+        return price
+      },
+      stars(){
+        return this.get_star_rating(this.product.rating)
+      }
+
     }
   }
 </script>
 
 <template>
-  <main>
+  <main v-if="product">
     <div id="container">
       <div id="images">
         <div v-for="image in product.images.slice(0,3)" class="mini" :style="{justifyContent: hasImgCountBelowThree ? 'start' : 'space-between' }">
@@ -65,7 +71,7 @@
           {{ product.title }}
         </h1>
         <p id="discount">
-          from {{this.discountedPrice }}$ <span id="vat"> (ink. vat) </span>
+          from {{discountedPrice }}$ <span id="vat"> (ink. vat) </span>
         </p>
         <p id="price">
           usally: <strong id="ordinary-price">{{ product.price }}$</strong> <span id="discountPercentage">-{{ product.discountPercentage }}%</span>

@@ -29,29 +29,31 @@ import axios from "axios"
 
 <template>
   <ul id="cards">
-    <div :key="product.id" id="card" v-for="[index, product] in Object.entries(this.products.products)" href="">
-      <li>
-        <div id="image-container">
-          <a href="">
-            <img  :src="product.images[0]" :alt="product.title">
-          </a>
+    <template v-if="products">
+      <div :key="product.id" id="card" v-for="[index, product] in Object.entries(this.products.products)" href="">
+        <li>
+          <div id="image-container">
+            <a href="">
+              <img  :src="product.images[0]" :alt="product.title">
+            </a>
+          </div>
+        <div id="info">
+          <div id="title">
+            <a href="">
+              {{ product.title }}
+            </a>
+          </div>
+          <div id="rating">
+            * * * * * ({{ product.rating }})
+          </div>
+          <div id="price">
+            {{ product.price }} $
+            <input class="btn" type="button" value="Add">
+          </div>
         </div>
-      <div id="info">
-        <div id="title">
-          <a href="">
-            {{ product.title }}
-          </a>
-        </div>
-        <div id="rating">
-          * * * * * ({{ product.rating }})
-        </div>
-        <div id="price">
-          {{ product.price }} $
-          <input class="btn" type="button" value="Add">
-        </div>
-      </div>
-    </li>
-  </div>
+      </li>
+    </div>
+    </template>
   </ul>
   <div >
 

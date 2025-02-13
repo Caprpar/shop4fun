@@ -8,12 +8,12 @@ export default createRouter({
   history: createWebHashHistory(),
   routes: [
     {
-      component: ProductView,
-      path: "/product/:productId",
-    },
-    {
       component: HomeView,
       path: "/",
+    },
+    {
+      component: ProductView,
+      path: "/product/:productId",
     },
     {
       component: ShopListView,
