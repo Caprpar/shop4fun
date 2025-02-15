@@ -7,15 +7,34 @@ export default {
   data() {
     return {
       products: null,
-      cart: []
+      cart: [],
+      url: null,
     };
   },
   async created() {
-    this.products = await this.get_data(
-      "https://dummyjson.com/products?limit=-1"
-    );
+    // FIXME URL:n vill inte fetchas
+    this.$watch(() => this.$route.params.category, this.get_list_by_category, {immediate:true})
+    console.log(this.$route.params.category)
+    console.log(this.url)
+    this.url = "https://dummyjson.com/products/category/fragrances"
+    // this.url = await this.get_list_by_category("beauty")
+    this.products = await this.get_data(this.url);
+    console.log(this.products)
   },
   methods: {
+    async get_list_by_category(category) {
+      const data = await this.get_data("https://dummyjson.com/products/categories")
+      const categories = data.map(category => category.slug)
+      let url = null
+
+      if (!categories.includes(category)) {
+        url = "https://dummyjson.com/products?limit=-1"
+      } else {
+        url = `https://dummyjson.com/products/category/${category}`
+      }
+      this.url = url
+      return url
+    },
     async get_data(url) {
       try {
         const response = await axios.get(url);
