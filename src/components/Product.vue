@@ -34,7 +34,6 @@
       }
     },
     async created() {
-      console.log(this.$route.params.productId)
       this.$watch(() => this.$route.params.productId,
       this.get_product_by_id,
       {immediate : true})

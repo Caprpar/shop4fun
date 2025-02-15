@@ -8,21 +8,15 @@ export default {
     return {
       products: null,
       cart: [],
-      url: null,
     };
   },
   async created() {
     // FIXME URL:n vill inte fetchas
-    this.$watch(() => this.$route.params.category, this.get_list_by_category, {immediate:true})
-    console.log(this.$route.params.category)
-    console.log(this.url)
-    this.url = "https://dummyjson.com/products/category/fragrances"
-    // this.url = await this.get_list_by_category("beauty")
-    this.products = await this.get_data(this.url);
-    console.log(this.products)
+    this.$watch(() => this.$route.params.category, this.get_url_by_category, {immediate:true})
+
   },
   methods: {
-    async get_list_by_category(category) {
+    async get_url_by_category(category) {
       const data = await this.get_data("https://dummyjson.com/products/categories")
       const categories = data.map(category => category.slug)
       let url = null
@@ -32,8 +26,7 @@ export default {
       } else {
         url = `https://dummyjson.com/products/category/${category}`
       }
-      this.url = url
-      return url
+      this.products = await this.get_data(url)
     },
     async get_data(url) {
       try {
