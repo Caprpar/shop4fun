@@ -33,15 +33,15 @@ import axios from "axios"
       <div :key="product.id" id="card" v-for="[index, product] in Object.entries(this.products.products)" href="">
         <li>
           <div id="image-container">
-            <a href="">
+            <router-link :to="'/product/' + product.id">
               <img  :src="product.images[0]" :alt="product.title">
-            </a>
+            </router-link>
           </div>
         <div id="info">
           <div id="title">
-            <a href="">
-              {{ product.title }}
-            </a>
+              <router-link :to="'/product/' + product.id">
+                {{ product.title }}
+              </router-link>
           </div>
           <div id="rating">
             * * * * * ({{ product.rating }})
