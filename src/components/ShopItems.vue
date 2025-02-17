@@ -146,7 +146,6 @@ form > input {
   margin-right: 0.5em;
 }
 form {
-  position: relative;
   display: flex;
   justify-content: end;
   padding: 0 2.3em;
