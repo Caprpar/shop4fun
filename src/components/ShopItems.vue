@@ -44,7 +44,6 @@ export default {
       if (this.searchFilter) {
         const products = this.products.products
         this.search = products.filter(product => product.title.toLowerCase().includes(this.searchFilter))
-        // this.products = this.search
       } else {
         this.search = null
 
