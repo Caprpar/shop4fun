@@ -45,7 +45,6 @@ export default {
     this.$watch(() => this.$route.params.productId, this.get_product_by_id, {
       immediate: true,
     });
-    // await this.get_product_by_id(this.$route.params.productId)
     this.hasImgCountBelowThree = this.product.images.length < 3 ? true : false;
   },
   computed: {

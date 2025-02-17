@@ -10,7 +10,6 @@ export default {
     };
   },
   async created() {
-    // FIXME URL:n vill inte fetchas
     this.$watch(() => this.$route.params.category, this.get_url_by_category, {immediate:true})
 
   },
@@ -37,8 +36,6 @@ export default {
       }
     },
     addToCart(product) {
-      // console.log("added to cart: "+ product.title);
-      // console.log("cart items: " + this.cart.length)
       this.$emit("add-to-cart", product)
     },
   },

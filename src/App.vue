@@ -19,6 +19,5 @@
 <template>
   <Navbar :cart-count="cart.length"></Navbar>
   <CategoryList />
-  <RouterView @add-to-cart="addToCart" /> <!-- Product skickar till cart -->
-  <!-- <ShopItems></ShopItems> -->
+  <RouterView @add-to-cart="addToCart" />
 </template>
