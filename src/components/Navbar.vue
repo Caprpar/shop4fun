@@ -1,11 +1,15 @@
 <script setup>
-  import {defineProps, ref} from 'vue'
+  import {defineProps, ref, watch} from 'vue'
   const props = defineProps({
     cartCount: {
       required: true,
       type: Number,
-      // searchFilter: null,
     }
+  })
+
+  let searchFilter = ref("")
+  watch(searchFilter, (newFilter, oldFilter) => {
+    console.log(`${oldFilter}${newFilter}`)
   })
 
 </script>
@@ -15,10 +19,7 @@
   <nav>
     <router-link to="/" class="no-deco"><span id="logo">S4F</span></router-link>
     <span id="items">
-      <form action="">
-        <input type="text" >
-        <input type="submit" value="sök">
-      </form>
+
       <span id="cart" class="icon"><div id="dot">{{ props.cartCount }}</div><img src="../../assets/cart.svg" alt=""></span>
       <span id="burger" class="icon"><img src="../../assets/burger.svg" alt=""></span>
     </span>
@@ -39,15 +40,7 @@
     width: 100vw;
     background-color: var(--dark);
   }
-  form > input{
-    font-family: montserrat;
-    margin-left: .5em;
-  }
-  form{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+
   span {
     display: flex;
     justify-content: center;

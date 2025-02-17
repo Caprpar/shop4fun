@@ -1,30 +1,51 @@
 <script>
 import axios from "axios";
 export default {
-  props: {
-    msg: String,
-  },
   data() {
     return {
       products: null,
+      searchFilter: null,
+      search: null,
     };
   },
   async created() {
-    this.$watch(() => this.$route.params.category, this.get_url_by_category, {immediate:true})
+    this.$watch(() => this.$route.params.category, this.get_url_by_category, {
+      immediate: true,
+    });
+  },
+  watch: {
+    async searchFilter(newFilter,oldFilter) {
+      // console.log(products.filter(product => product.title.toLowerCase().includes(oldFilter)))
+      // this.products = search
+      if (this.searchFilter) {
+        console.log(oldFilter)
+        console.log(this.searchFilter)
+        const products = await this.products.products
+        this.search = products.filter(product => product.title.toLowerCase().includes(oldFilter))
+        // this.products = this.search
+      } else {
+        this.search = null
 
+      }
+      // let search_products = this.products.filter((product) => product.title.includes(oldFilter))
+      // console.log(search_products)
+
+    }
   },
   methods: {
     async get_url_by_category(category) {
-      const data = await this.get_data("https://dummyjson.com/products/categories")
-      const categories = data.map(category => category.slug)
-      let url = null
+      const data = await this.get_data(
+        "https://dummyjson.com/products/categories"
+      );
+      const categories = data.map((category) => category.slug);
+      let url = null;
 
       if (!categories.includes(category)) {
-        url = "https://dummyjson.com/products?limit=-1"
+        url = "https://dummyjson.com/products?limit=-1";
       } else {
-        url = `https://dummyjson.com/products/category/${category}`
+        url = `https://dummyjson.com/products/category/${category}`;
       }
-      this.products = await this.get_data(url)
+      this.products = await this.get_data(url);
     },
     async get_data(url) {
       try {
@@ -36,13 +57,17 @@ export default {
       }
     },
     addToCart(product) {
-      this.$emit("add-to-cart", product)
+      this.$emit("add-to-cart", product);
     },
   },
 };
 </script>
 
 <template>
+  <form action="">
+    <input type="text" v-model="searchFilter" />
+    <input type="submit" value="sök" />
+  </form>
   <ul id="cards">
     <template v-if="products">
       <div
@@ -66,7 +91,12 @@ export default {
             <div id="rating">* * * * * ({{ product.rating }})</div>
             <div id="price">
               {{ product.price }} $
-              <input class="btn" type="button" value="Add" @click="addToCart(product)" />
+              <input
+                class="btn"
+                type="button"
+                value="Add"
+                @click="addToCart(product)"
+              />
             </div>
           </div>
         </li>
@@ -81,6 +111,7 @@ p {
   font-weight: bold;
 }
 
+
 img {
   width: auto;
   height: 8em;
@@ -89,7 +120,16 @@ img {
   object-fit: contain;
   /* margin: 1em; */
 }
-
+form > input {
+  font-family: montserrat;
+  margin-right: 0.5em;
+}
+form {
+  position: relative;
+  display: flex;
+  justify-content: end;
+  padding: 0 2.3em;
+}
 ul {
   padding: 0 1.5em;
 }
