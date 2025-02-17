@@ -60,4 +60,5 @@ import { routerKey } from 'vue-router';
     color: var(--dark);
     background-color: var(--grey);
   }
+
 </style>

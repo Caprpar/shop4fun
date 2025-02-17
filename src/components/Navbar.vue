@@ -17,7 +17,8 @@
 <template>
 
   <nav>
-    <router-link to="/" class="no-deco"><span id="logo">S4F</span></router-link>
+    <router-link to="/" id="phone-logo" class="no-deco"><span id="logo">S4F</span></router-link>
+    <router-link to="/" id="desktop-logo" class="no-deco"><span id="logo">Shop4Fun</span></router-link>
     <span id="items">
 
       <span id="cart" class="icon"><div id="dot">{{ props.cartCount }}</div><img src="../../assets/cart.svg" alt=""></span>
@@ -81,4 +82,27 @@
     padding: 0 .5rem;
     /* border:solid var(--red); */
   }
+  #phone-logo {
+    display: block;
+  }
+  #desktop-logo {
+    display: none;
+  }
+
+  /* Större skärmar (datorer) */
+  @media only screen and (min-width: 768px) {
+  #phone-logo {
+    display: none;
+  }
+  #desktop-logo {
+    display: block;
+  }
+  #burger {
+    display: none;
+  }
+  #categories {
+    display: block;
+  }
+
+}
 </style>
