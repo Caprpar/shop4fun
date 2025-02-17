@@ -13,25 +13,6 @@ export default {
       immediate: true,
     });
   },
-  watch: {
-    async searchFilter(newFilter,oldFilter) {
-      // console.log(products.filter(product => product.title.toLowerCase().includes(oldFilter)))
-      // this.products = search
-      if (this.searchFilter) {
-        console.log(oldFilter)
-        console.log(this.searchFilter)
-        const products = await this.products.products
-        this.search = products.filter(product => product.title.toLowerCase().includes(oldFilter))
-        // this.products = this.search
-      } else {
-        this.search = null
-
-      }
-      // let search_products = this.products.filter((product) => product.title.includes(oldFilter))
-      // console.log(search_products)
-
-    }
-  },
   methods: {
     async get_url_by_category(category) {
       const data = await this.get_data(
@@ -59,14 +40,24 @@ export default {
     addToCart(product) {
       this.$emit("add-to-cart", product);
     },
+    showSearchResult() {
+      if (this.searchFilter) {
+        const products = this.products.products
+        this.search = products.filter(product => product.title.toLowerCase().includes(this.searchFilter))
+        // this.products = this.search
+      } else {
+        this.search = null
+
+      }
+    }
   },
 };
 </script>
 
 <template>
   <form action="">
-    <input type="text" v-model="searchFilter" />
-    <input type="submit" value="sök" />
+    <input type="text" placeholder="ex: shirt" v-model="searchFilter" />
+    <input type="submit" value="Search" @click="showSearchResult" />
   </form>
   <ul id="cards">
     <template v-if="products">
