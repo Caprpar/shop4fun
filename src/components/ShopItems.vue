@@ -70,7 +70,38 @@ export default {
   </form>
   <ul id="cards">
     <template v-if="products">
-      <div
+      <div v-if="search"
+        :key="product.id"
+        id="card"
+        v-for="[index, product] in Object.entries(this.search)"
+        href=""
+      >
+        <li>
+          <div id="image-container">
+            <router-link :to="'/product/' + product.id">
+              <img :src="product.images[0]" :alt="product.title" />
+            </router-link>
+          </div>
+          <div id="info">
+            <div id="title">
+              <router-link :to="'/product/' + product.id">
+                {{ product.title }}
+              </router-link>
+            </div>
+            <div id="rating">* * * * * ({{ product.rating }})</div>
+            <div id="price">
+              {{ product.price }} $
+              <input
+                class="btn"
+                type="button"
+                value="Add"
+                @click="addToCart(product)"
+              />
+            </div>
+          </div>
+        </li>
+      </div>
+      <div v-else
         :key="product.id"
         id="card"
         v-for="[index, product] in Object.entries(this.products.products)"
