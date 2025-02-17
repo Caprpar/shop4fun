@@ -181,8 +181,6 @@ hgroup {
   color: var(--strong-grey);
   font-size: 0.9rem;
 }
-#price {
-}
 #ordinary-price {
   color: var(--light-dark);
   font-size: 1.1em;
