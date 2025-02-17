@@ -36,8 +36,10 @@ export default {
     },
     hoverImage(img) {
       this.big_image = img
-      this.$emit("change-image-on-hover")
-    }
+    },
+    addToCart(product){
+      this.$emit("add-to-cart", product)
+    },
   },
   async created() {
     this.$watch(() => this.$route.params.productId, this.get_product_by_id, {
@@ -100,7 +102,7 @@ export default {
         </div>
       </hgroup>
 
-      <input type="button" name="" id="add-button" value="Add to cart" />
+      <input type="button" name="" id="add-button" value="Add to cart" @click="addToCart(product)"/>
     </div>
   </main>
 </template>

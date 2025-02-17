@@ -9,14 +9,16 @@
   // cart variable
   function addToCart(product){
     cart.value.push(product)
-    console.log(cart.value[0].title)
+    console.log("Cart items:")
+    for (const product of cart.value) {
+      console.log(` ${product.title}`)
+    }
   }
-  addToCart({title:"perfym"})
 </script>
 
 <template>
-  <Navbar :cart-count="cart.length"></Navbar>   <!-- Hur tar navbar emot cart.l -->
-  <CategoryList @product-added="addToCart" />
-  <RouterView />
+  <Navbar :cart-count="cart.length"></Navbar>
+  <CategoryList />
+  <RouterView @add-to-cart="addToCart" /> <!-- Product skickar till cart -->
   <!-- <ShopItems></ShopItems> -->
 </template>

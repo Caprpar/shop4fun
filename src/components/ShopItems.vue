@@ -7,7 +7,6 @@ export default {
   data() {
     return {
       products: null,
-      cart: [],
     };
   },
   async created() {
@@ -38,9 +37,9 @@ export default {
       }
     },
     addToCart(product) {
-      console.log("added to cart: "+ product.title);
-      this.cart.push(product)
-      console.log("cart items: "+this.cart.length)
+      // console.log("added to cart: "+ product.title);
+      // console.log("cart items: " + this.cart.length)
+      this.$emit("add-to-cart", product)
     },
   },
 };
