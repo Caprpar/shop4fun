@@ -5,3 +5,5 @@
 - [ ] add custom event that, when hover over one of smaller images in product view, change big image to hovered
 - [ ] implementera en sökfunktion som filtrerar products och visar upp alla produkter som innehåller inmatad text
 - [ ] med props ändra antalet produkter som finns tillagt i varukorgen
+- [ ] i app.vue mata in stjärnor och cart för att kunna arbeta globalt med de funktionalliteterna
+- [ ] Med hjälp av custom event lägg till produkt till varukorg

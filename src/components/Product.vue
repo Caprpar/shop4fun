@@ -5,6 +5,7 @@ export default {
     return {
       product: null,
       hasImgCountBelowThree: null,
+      big_image: null,
     };
   },
   methods: {
@@ -12,6 +13,7 @@ export default {
       const response = await fetch(`https://dummyjson.com/products/${id}`);
       const data = await response.json();
       this.product = await data;
+      this.big_image = this.product.images[0]
     },
     get_star_rating(rating) {
       const full = "../../assets/full.svg";
@@ -32,6 +34,10 @@ export default {
 
       return starList;
     },
+    hoverImage(img) {
+      this.big_image = img
+      this.$emit("change-image-on-hover")
+    }
   },
   async created() {
     this.$watch(() => this.$route.params.productId, this.get_product_by_id, {
@@ -66,10 +72,10 @@ export default {
             justifyContent: hasImgCountBelowThree ? 'start' : 'space-between',
           }"
         >
-          <img :src="image" :alt="product.title" />
+          <img :src="image" :alt="product.title" @mouseover="hoverImage(image)"/>
         </div>
         <div id="big">
-          <img :src="product.images[0]" alt="" />
+          <img :src="big_image" alt="" />
         </div>
       </div>
 

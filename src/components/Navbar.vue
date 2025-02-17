@@ -1,4 +1,11 @@
 <script setup>
+  import {defineProps, ref} from 'vue'
+  const props = defineProps({
+    cartCount: {
+      required: true,
+      type: Number,
+    }
+  })
 
 </script>
 
@@ -7,7 +14,7 @@
   <nav>
     <router-link to="/" class="no-deco"><span id="logo">S4F</span></router-link>
     <span id="items">
-      <span id="cart" class="icon"><div id="dot"></div><img src="../../assets/cart.svg" alt=""></span>
+      <span id="cart" class="icon"><div id="dot">{{ props.cartCount }}</div><img src="../../assets/cart.svg" alt=""></span>
       <span id="burger" class="icon"><img src="../../assets/burger.svg" alt=""></span>
     </span>
   </nav>
@@ -38,10 +45,13 @@
   }
   #dot {
     /* Appears if cart contains items, display: block = on, none = off */
-    display: block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
     position: absolute;
-    height: 13px;
-    width: 13px;
+    height: 23px;
+    width: 23px;
     left: 39px;
     bottom: 29px;
     background-color: var(--red);
