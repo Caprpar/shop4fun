@@ -4,6 +4,7 @@
     cartCount: {
       required: true,
       type: Number,
+      // searchFilter: null,
     }
   })
 
@@ -14,6 +15,10 @@
   <nav>
     <router-link to="/" class="no-deco"><span id="logo">S4F</span></router-link>
     <span id="items">
+      <form action="">
+        <input type="text" >
+        <input type="submit" value="sök">
+      </form>
       <span id="cart" class="icon"><div id="dot">{{ props.cartCount }}</div><img src="../../assets/cart.svg" alt=""></span>
       <span id="burger" class="icon"><img src="../../assets/burger.svg" alt=""></span>
     </span>
@@ -33,6 +38,15 @@
     height: 5em;
     width: 100vw;
     background-color: var(--dark);
+  }
+  form > input{
+    font-family: montserrat;
+    margin-left: .5em;
+  }
+  form{
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
   span {
     display: flex;

@@ -1,9 +1,9 @@
 - [x] link product image and text to its product side
-- [ ] create a cart variable that stores locally
+- [x] create a cart variable that stores locally
 - [x] give functionallity to add buttons, that prodict adds to cart
 - [x] create vertical ul for each category, that links to each category site
-- [ ] add custom event that, when hover over one of smaller images in product view, change big image to hovered
+- [x] add custom event that, when hover over one of smaller images in product view, change big image to hovered
 - [ ] implementera en sökfunktion som filtrerar products och visar upp alla produkter som innehåller inmatad text
-- [ ] med props ändra antalet produkter som finns tillagt i varukorgen
+- [x] med props ändra antalet produkter som finns tillagt i varukorgen
 - [ ] i app.vue mata in stjärnor och cart för att kunna arbeta globalt med de funktionalliteterna
-- [ ] Med hjälp av custom event lägg till produkt till varukorg
+- [x] Med hjälp av custom event lägg till produkt till varukorg
